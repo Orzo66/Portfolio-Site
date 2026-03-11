@@ -176,27 +176,72 @@ nav {
     display: flex;
     flex-direction: column; /* Stacks the top row and the big image */
     align-items: center; /* Vertically centers them. */
-    justify-content: center;
     padding: 60px 20px;
-    max-width: 1200px; /* Limits width so it doesn't get too stretched on huge monitors */
+    max-width: 1400px; /* Limits width so it doesn't get too stretched on huge monitors */
     margin: 0 auto; /* Centers the whole section */
 }
 
 .top-row {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Centers H1, H2, and P within the right side. */
-    justify-content: center;
+    align-items: space-around; /* Centers H1, H2, and P within the right side. */
+    justify-content: space-between;
     gap: 50px;
     width: 100%;
     margin-bottom: 50px; /* Space before secondary image. */
+}
+
+.headshot-container {
+    position: relative;
+    width: 400px;
+    height: auto;
+    margin-left: -20px;
+    cursor: pointer;
+}
+
+.headshot {
+    display: block;
+    width: 100%;
+    border-radius: 15px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Applying 'cubic-bezier' transition to match image animatin of secondary image */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Default shadow (static state) */
+}
+
+/* Stack both headshot images on top of each other. */
+.headshot-color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0; /* Hidden initially */
+}
+
+.headshot-bw {
+    position: relative; /* This stays on top by default */
+    z-index: 2;
+}
+
+/* Hover Logic: Apply to the container so both images react together */
+.headshot-container:hover .headshot {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(59, 193, 168, 0.4),
+                0 0 20px rgba(59, 193, 168, 0.4),
+                0 0 40px rgba(59, 193, 168, 0.2);
+}
+
+.headshot-container:hover .headshot-bw {
+    opacity: 0; /* Fade out the B&W */
+}
+
+.headshot-container:hover .headshot-color {
+    opacity: 1; /* Fade in the Color */
 }
 
 .text-content {
     display: flex;
     flex-direction: column;
     text-align: left; /* Aligns text to left relative to headshot */
-    max-width: 700px;
+    max-width: 1400px;
 }
 
 .title-heading {
@@ -220,7 +265,8 @@ nav {
 /* Style for the code/laptop image */
 .secondary-image {
     width: 100%; /* stretches across the bottom */
-    max-width: 10000px; /* But, not too wide */
+    max-width: 100%; /* makes sure it never exceeds the main container */
+    height: auto;
     border-radius: 15px;
     filter: brightness(0.8) contrast(1.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -317,3 +363,69 @@ footer img:hover {
 /******************************************
 /* MEDIA QUERIES
 /*******************************************/
+@media (max-width: 1024px) {
+    #main {
+        padding: 40px 15px; /* Tighten padding so it doesn't push content in too far */
+    }
+
+    .top-row {
+        flex-direction: column; /* Stack vertically so nothing runs off the side */
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .text-content {
+        max-width: 100%; /* Allow text to take up the full width of the screen */
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .title-heading {
+        font-size: clamp(2.5rem, 8vw, 4rem); /* Responsive font size that scales with the screen */
+    }
+
+    .headshot-container {
+        margin-left: 0; /* Centering it for the vertical stack */
+        max-width: 90%; /* Ensures it never wider than the phone screen */
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1. Show the hamburger icon your JS is looking for */
+    .hamburger {
+        display: block; 
+    }
+
+    /* 2. Hide the links initially so the JS can 'toggle' them */
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on your nav height */
+        left: 0;
+        width: 100%;
+        background-color: var(--gradient-start);
+        padding: 20px;
+        z-index: 10;
+    }
+
+    /* 3. The class your JS likely 'toggles' to show the menu */
+    .nav-links.active {
+        display: flex;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        padding: 30px 15px;
+    }
+
+    .footer-center, .footer-left, .footer-right {
+        width: 100%;
+        margin-bottom: 20px;
+        align-items: center !important;
+        text-align: center !important;
+    }
+}
