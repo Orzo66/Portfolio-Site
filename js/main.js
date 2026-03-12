@@ -31,3 +31,30 @@ window.addEventListener('DOMContentLoaded', () => {
     loadComponent('nav-placeholder', 'header.html');
     loadComponent('footer-placeholder', 'footer.html');
 });
+
+// Email functionality to fix potential bot issues
+// This works even if the footer is loaded dynamically later
+document.addEventListener('click', function (e) {
+    // Check if the clicked element (or its parent) is our email link
+    const link = e.target.closest('.email-link');
+
+    if (link) {
+        e.preventDefault();
+        
+        const user = link.getAttribute('data-user');
+        const domain = link.getAttribute('data-domain');
+        const email = `${user}@${domain}`;
+
+        console.log("Stitching email for:", email);
+        
+        // Use window.location to trigger the mail app
+        window.location.href = `mailto:${email}`;
+
+        // Fallback for Mac/No-Mail-App users
+        setTimeout(() => {
+            if (!document.hidden) {
+                alert(`Oops! Looks like you don't have a default mail app. My email is: ${email}`);
+            }
+        }, 500);
+    }
+});
