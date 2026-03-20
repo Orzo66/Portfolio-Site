@@ -5,7 +5,9 @@ UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSA
 :root {
     --text-color: #F7F7F8;
     --gradient-start: #291F71;
-    --gradient-end: #C82586;
+    --bright-magenta: #C82586;
+    --pastel-purple: #8F0177; 
+    --gradient-end: #53CBF3;
     --light-turqoise: #3BC1A8;
     --dark-turqoise: #005461;
     --blue: #261CC1;
@@ -143,7 +145,7 @@ nav {
 }
 
 .nav-links a:hover {
-    background-color: var(--pastel-dark-blue);
+    background-color: var(--light-turqoise);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -252,7 +254,7 @@ nav {
 
 .job-heading {
     font-size: 3.5rem; /* Makes H2 big, but smaller than H1. */
-    color: var(--light-turqoise); /* adds a splash of color - might take out later. */
+    color: var(--pastel-purple); /* adds a splash of color - might take out later. */
     margin-bottom: 25px;
 }
 
@@ -271,6 +273,7 @@ nav {
     filter: brightness(0.8) contrast(1.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     margin-top: 20px;
+
     /* Cubic-bezier give sit a 'snappy' mechanical feel instead of a linear slide */
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -295,6 +298,7 @@ nav {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
 
 /******************************************
 /* FOOTER
