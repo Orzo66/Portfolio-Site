@@ -1,33 +1,40 @@
-// Toggle menu function
+// Grab the contact form
+const contactForm = document.querySelector('#contact form');
 
-// Toggle hamburger menu
-function toggleMenu() {
-    const links = document.getElementById("navLinks");
-    if (links) {
-        links.classList.toggle("active");
-    }
+if (contactForm) {
+	contactForm.addEventListener('submit', function (e) {
+		// Prevent the default page reload
+		e.preventDefault();
+
+		// Target the submit button to update its state
+		const submitBtn = this.querySelector('input[type="submit"]');
+		const originalText = submitBtn.value;
+
+		// Provide immediate visual feedback
+		submitBtn.value = 'Sending...';
+		submitBtn.style.opacity = '0.8';
+		submitBtn.style.cursor = 'wait';
+
+		// --- Backend Integration Point ---
+		// This is where you would normally hook into your backend logic
+		// (e.g., using fetch() to send the data to a Python script, Cloud Function, or PHP handler).
+
+		// For demonstration, we simulate a successful network request with a timeout
+		setTimeout(() => {
+			// Success state
+			submitBtn.value = 'Message Sent!';
+			submitBtn.style.backgroundColor = '#3e9e82'; // Darker success color
+			submitBtn.style.opacity = '1';
+			submitBtn.style.cursor = 'pointer';
+
+			// Clear the form fields
+			this.reset();
+
+			// Reset the button back to its original state after 3 seconds
+			setTimeout(() => {
+				submitBtn.value = originalText;
+				submitBtn.style.backgroundColor = ''; // Reverts to the CSS stylesheet color
+			}, 3000);
+		}, 1500); // Simulated 1.5 second network delay
+	});
 }
-
-// Function to load the external header and footer files
-async function loadComponent(id, file) {
-    const element = document.getElementById(id);
-    if (!element) return; 
-
-    try {
-        // We use a relative path. 
-        // If your HTML files are in the root, 'footer.html' is correct.
-        const response = await fetch(file); 
-        if (!response.ok) throw new Error(`Could not find ${file}`);
-        
-        const html = await response.text();
-        element.innerHTML = html;
-    } catch (error) {
-        console.warn("Component load failed:", error);
-    }
-}
-
-// Initialize on Load (tell browser to run these functions as soon as page opens)
-window.addEventListener('DOMContentLoaded', () => {
-    loadComponent('nav-placeholder', 'header.html');
-    loadComponent('footer-placeholder', 'footer.html');
-});

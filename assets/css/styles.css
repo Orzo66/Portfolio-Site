@@ -1,431 +1,237 @@
-/************************************************************************************************************************
-UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - UNIVERSAL - U
-************************************************************************************************************************/
-/* Color variables for everything. */
-:root {
-    --text-color: #F7F7F8;
-    --gradient-start: #291F71;
-    --gradient-end: #C82586;
-    --light-turqoise: #3BC1A8;
-    --dark-turqoise: #005461;
-    --blue: #261CC1;
-    --pastel-dark-blue: #0B2D72;
-    --nav-padding: 20px;
-}
-
-html, body {
-     max-width: 100%;
-     overflow-x: hidden;
-}
-
-/* Box Model Hack */
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-/* Clear fix hack */
-.clearfix:after {
-     content: ".";
-     display: block;
-     clear: both;
-     visibility: hidden;
-     line-height: 0;
-     height: 0;
-}
-
-.clear {
-	clear: both;
-}
-
-/*Add to beginning of all CSS you use in your styles.css */
+/* --- Global Styles & Resets --- */
 * {
-    text-decoration: none;
-    font-family: arial;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
 body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #555;
+    background-color: #f4f4f4;
+    line-height: 1.6;
 }
 
-/******************************************
-/* GLOBAL TYPOGRAPHY & LAYOUT
-/*******************************************/
-html, body {
-    min-height: 100vh;
-    background: linear-gradient(to bottom,var(--gradient-start), var(--gradient-end), var(--gradient-start));
-    /* Prevents gradient from starting over when page gets too long. */
-    background-attachment: fixed;
-    color: var(--text-color);
-    font-family: "Montserrat", sans-serif;
+h1, h2, h3 {
+    color: #4a4a4a;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
+/* --- Layout Structure --- */
+
+/* The Left Sidebar (Header) */
+#header {
     display: flex;
     flex-direction: column;
-}
-
-
-/******************************************
-/* NAVIGATION (Desktop and Mobile)
-/*******************************************/
-nav {
-    /*background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end), var(--gradient-start));*/
-    background: var(--gradient-start);
-    padding: 10px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
-    position: relative; /* Need this for absolute mobile menu. */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Container for links. */
-.nav-links{
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-/* The links (buttons) */
-.nav-links a {
-    text-decoration: none;
-    background-color: var(--dark-turqoise);
-    color: var(--text-color);
-    font-weight: 700;
-    padding: 12px 25px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.nav-links a:hover {
-    background-color: var(--pastel-dark-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Hamburger Icon (Hidden on Desktop */
-.hamburger {
-    display: none;
-    font-size: 2rem;
-    color: var(--dark-turqoise);
-    cursor: pointer;
-    background: none;
-    border: none;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-}
-
-/******************************************
-/* PAGE SPECIFIC STYLES
-/*******************************************/
-
-/******* Main Page **************/
-
-.title-heading, .job-heading {
-    font-family: "Playfair Display", serif;
-}
-
-#main {
-    flex: 1; /* Tells the main content to GROW to fill the gap. */
-    display: flex;
-    flex-direction: column; /* Stacks the top row and the big image */
-    align-items: center; /* Vertically centers them. */
-    padding: 60px 20px;
-    max-width: 1400px; /* Limits width so it doesn't get too stretched on huge monitors */
-    margin: 0 auto; /* Centers the whole section */
-}
-
-.top-row {
-    display: flex;
-    flex-direction: row;
-    align-items: space-around; /* Centers H1, H2, and P within the right side. */
     justify-content: space-between;
-    gap: 50px;
-    width: 100%;
-    margin-bottom: 50px; /* Space before secondary image. */
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 100vh;
+    padding: 4rem 3rem;
+    background: #1e1e1e url('images/bg-image.jpg') center/cover; /* Add a dark background image here */
+    color: #fff;
+    text-align: right;
 }
 
-.headshot-container {
-    position: relative;
-    width: 400px;
-    height: auto;
-    margin-left: -20px;
-    cursor: pointer;
+#header h1 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.25rem;
+    line-height: 1.75;
 }
 
-.headshot {
+#header h1 strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.image.avatar {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.image.avatar img {
+    width: 140px;
+    height: 180px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.footer-social a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.footer-social a:hover {
+    color: #fff;
+}
+
+.sidebar-copyright {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    line-height: 1.5;
+}
+
+/* The Main Content Area */
+#main {
+    margin-left: 35%;
+    padding: 6rem 4rem;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* --- Recent Work Grid --- */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.work-item {
+    margin-bottom: 1rem;
+}
+
+.work-item h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.work-item p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Image Link Hover Effects */
+.image-link {
     display: block;
-    width: 100%;
-    border-radius: 15px;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Applying 'cubic-bezier' transition to match image animatin of secondary image */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Default shadow (static state) */
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
-/* Stack both headshot images on top of each other. */
-.headshot-color {
+.image-link img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.image-link .overlay {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
-    opacity: 0; /* Hidden initially */
-}
-
-.headshot-bw {
-    position: relative; /* This stays on top by default */
-    z-index: 2;
-}
-
-/* Hover Logic: Apply to the container so both images react together */
-.headshot-container:hover .headshot {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 10px 30px rgba(59, 193, 168, 0.4),
-                0 0 20px rgba(59, 193, 168, 0.4),
-                0 0 40px rgba(59, 193, 168, 0.2);
-}
-
-.headshot-container:hover .headshot-bw {
-    opacity: 0; /* Fade out the B&W */
-}
-
-.headshot-container:hover .headshot-color {
-    opacity: 1; /* Fade in the Color */
-}
-
-.text-content {
-    display: flex;
-    flex-direction: column;
-    text-align: left; /* Aligns text to left relative to headshot */
-    max-width: 1400px;
-}
-
-.title-heading {
-    font-size: 5.5rem; /* Makes H1 big. */
-    line-height: 1.1;
-    margin-bottom: 10px;
-}
-
-.job-heading {
-    font-size: 3.5rem; /* Makes H2 big, but smaller than H1. */
-    color: var(--light-turqoise); /* adds a splash of color - might take out later. */
-    margin-bottom: 25px;
-}
-
-.personal-statement {
-    font-size: 1.3rem; /* Slightly larger for readability */
-    line-height: 1.7;
-    max-width: 600px;
-}
-
-/* Style for the code/laptop image */
-.secondary-image {
-    width: 100%; /* stretches across the bottom */
-    max-width: 100%; /* makes sure it never exceeds the main container */
-    height: auto;
-    border-radius: 15px;
-    filter: brightness(0.8) contrast(1.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    margin-top: 20px;
-    /* Cubic-bezier give sit a 'snappy' mechanical feel instead of a linear slide */
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.secondary-image:hover {
-    /* 1. Lift and Scale*/
-    transform: translateY(-15px) scale(1.03);
-    /* 2. Light it up: boost brightness and contrast on hover */
-    filter: brightness(1.1) contrast(1.2);
-    /* 3. The Glos: uses a multi-layered shadow for a neon 'bloom' effect */
-    box-shadow: 0 10px 30px rgba(59, 193, 168, 0.4),
-                0 0 20px rgba(59, 193, 168, 0.4), /* Inner glow */
-                0 0 40px rgba(59, 193, 168, 0.2); /* Outer bloom */
-}
-
-#footer-placeholder {
     width: 100%;
-}
-
-.headshot {
-    width: 400px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/******************************************
-/* FOOTER
-/*******************************************/
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--gradient-start);
-    color: var(--text-color);
-    padding: 20px 60px;
-    margin-top: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Base styles for the three columns */
-.footer-left, .footer-center, .footer-right {
-    flex: 1;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
     display: flex;
     align-items: center;
-}
-
-/* Left: Stack text verticaly */
-.footer-left {
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 0.9rem; /* Smaller text for a cleaner look */
-    gap: 4px;
-}
-
-/* Center: Horizontal social icons */
-.footer-center {
     justify-content: center;
-    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
-/* Right: Contact link and LinkedIn next to each other */
-.footer-right {
-    justify-content: flex-end;
-    gap: 20px
+.image-link:hover img {
+    transform: scale(1.05);
 }
 
-/* Sizing the icons consistently */
-footer img {
-    height: 30px; /* Smaller icons for a modern fleet */
-    width: auto;
-    transition: transform 0.2s ease;
+.image-link:hover .overlay {
+    opacity: 1;
 }
 
-footer img:hover {
-    transform: scale(1.1);
+/* --- Contact Form --- */
+.contact-container {
+    max-width: 800px;
 }
 
-.contact-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 16px;
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.contact-link:hover {
-    color: var(--gradient-end);
+.form-row input, .form-row textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
 }
 
-/******************************************
-/* MEDIA QUERIES
-/*******************************************/
-@media (max-width: 1024px) {
-    #main {
-        padding: 40px 15px; /* Tighten padding so it doesn't push content in too far */
-    }
+.actions {
+    list-style: none;
+}
 
-    .top-row {
-        flex-direction: column; /* Stack vertically so nothing runs off the side */
+.button {
+    background-color: #49bf9d; /* Strata's default green-ish accent */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #3e9e82;
+}
+
+/* --- Mobile Responsiveness --- */
+@media screen and (max-width: 980px) {
+    #header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 4rem 2rem;
         align-items: center;
         text-align: center;
-        gap: 30px;
     }
 
-    .text-content {
-        max-width: 100%; /* Allow text to take up the full width of the screen */
-        text-align: center;
-        padding: 0 10px;
+    #main {
+        margin-left: 0;
+        padding: 4rem 2rem;
     }
 
-    .title-heading {
-        font-size: clamp(2.5rem, 8vw, 4rem); /* Responsive font size that scales with the screen */
-    }
-
-    .headshot-container {
-        margin-left: 0; /* Centering it for the vertical stack */
-        max-width: 90%; /* Ensures it never wider than the phone screen */
+    .form-row {
+        flex-direction: column;
     }
 }
 
-@media (max-width: 768px) {
-    /* 1. Show the hamburger icon your JS is looking for */
-    .hamburger {
-        display: block; 
-    }
+#footer {
+    display: none; /* Handled inside #header on desktop */
+}
 
-    /* 2. Hide the links initially so the JS can 'toggle' them */
-    .nav-links {
-        display: none; 
-        flex-direction: column;
-        position: absolute;
-        top: 60px; /* Adjust based on your nav height */
-        left: 0;
-        width: 100%;
-        background-color: var(--gradient-start);
-        padding: 20px;
-        z-index: 10;
-    }
-
-    /* 3. The class your JS likely 'toggles' to show the menu */
-    .nav-links.active {
-        display: flex;
-    }
-
-    footer {
-        flex-direction: column;
+@media screen and (max-width: 980px) {
+    #footer {
+        display: block;
         text-align: center;
-        width: 100%;
-        padding: 30px 15px;
-    }
-
-    .footer-center, .footer-left, .footer-right {
-        width: 100%;
-        margin-bottom: 20px;
-        align-items: center !important;
-        text-align: center !important;
+        padding: 2rem;
+        background: #f4f4f4;
+        color: #888;
+        font-size: 0.9rem;
     }
 }
