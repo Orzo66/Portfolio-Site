@@ -13,8 +13,9 @@ body {
 }
 
 h1, h2, h3 {
+    font-family: 'Lora', serif; /* Overrides the body font */
     color: #4a4a4a;
-    font-weight: 300;
+    font-weight: 600;
     margin-bottom: 1rem;
 }
 
@@ -64,14 +65,34 @@ p {
     object-fit: cover;
 }
 
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Aligns everything cleanly to the right */
+    align-items: center;
+    gap: 0.6rem; /* This sets the exact space between the pipe and the next link */
+}
+
 .footer-social a {
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
-    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
 }
 
 .footer-social a:hover {
     color: #fff;
+}
+
+/* Draws a perfectly centered pipe after every link EXCEPT the last one */
+.footer-social a:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    height: 1em; /* Matches the height of the text */
+    width: 1px; /* Thickness of the pipe */
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly dimmer than the text */
+    margin-left: 0.6rem; /* Matches the flex 'gap' to ensure perfect symmetry */
 }
 
 .sidebar-copyright {
@@ -87,6 +108,27 @@ p {
     padding: 6rem 4rem;
     background-color: #fff;
     min-height: 100vh;
+}
+
+/* --- H2 Standout Styling --- */
+#main h2 {
+    font-size: 2.2rem;
+    font-weight: 600; /* Makes it bolder */
+    color: #2c2c2c; /* A darker, sharper gray/black */
+    letter-spacing: -0.02em; /* Tightens it up for a cleaner look */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* Creates a custom accent line under the headers */
+#main h2::after {
+    content: '';
+    display: block;
+    width: 65px; /* Length of the accent line */
+    height: 4px; /* Thickness */
+    background-color: #49bf9d; /* Ties in perfectly with your submit button */
+    margin-top: 0.75rem;
+    border-radius: 2px;
 }
 
 section {
